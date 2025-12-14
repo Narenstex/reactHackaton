@@ -224,7 +224,7 @@ def save_context(data: dict):
 # --- 5. BLOQUE DE PRUEBA DE FUNCIONALIDAD (Ejecución en Consola) ---
 # --- 5. BLOQUE DE PRUEBA DE FUNCIONALIDAD (Ejecución en Consola) ---
 if __name__ == '__main__':
-    print("--- 🧠 YUNO CONTEXT CORE API PRUEBAS ---")
+    print("--- YUNO CONTEXT CORE API PRUEBAS ---")
 
     # --- SIMULACIÓN DE ARCHIVO DE ENTRADA (Una nueva nota o transcripción) ---
     archivo_input_simulado = """
@@ -235,7 +235,7 @@ if __name__ == '__main__':
     # PASO 1: ROUTING - Identificar el Merchant
     print("\n--- PASO 1: ROUTING DE ARCHIVO ---")
     merchant_name = identify_merchant_from_text(archivo_input_simulado)
-    print(f"✅ MERCHANT IDENTIFICADO: {merchant_name}")
+    print(f"MERCHANT IDENTIFICADO: {merchant_name}")
     
     if merchant_name not in ["DESCONOCIDO", "ERROR_ROUTING"]:
         
@@ -255,7 +255,7 @@ if __name__ == '__main__':
         memoria_viva_actualizada = execute_yuno_core(mode=1, input_data=consolidated_input)
         
         if isinstance(memoria_viva_actualizada, dict):
-            print("✅ MODO 1 ÉXITO. Memoria Viva ACTUALIZADA y Consolidada.")
+            print("MODO 1 EXITO. Memoria Viva ACTUALIZADA y Consolidada.")
             
             # PASO 4: PERSISTENCIA - Guardar la nueva versión
             save_context(memoria_viva_actualizada)
@@ -263,7 +263,7 @@ if __name__ == '__main__':
             # PASO 5: SALESFORCE - MODO 2 (Usa la data guardada)
             print("\n--- PASO 5: MODO 2 (SALESFORCE FILLER) ---")
             salesforce_output = execute_yuno_core(mode=2, input_data="Generar campos de resumen para Salesforce.", current_context=memoria_viva_actualizada)
-            print("✅ MODO 2 ÉXITO. Output Salesforce:\n" + salesforce_output)
+            print("MODO 2 EXITO. Output Salesforce:\n" + salesforce_output)
             
             # PASO 6: CONSULTA - MODO 3 (Usa la data guardada)
             print("\n--- PASO 6: MODO 3 (CONSULTA Y FILTRO) ---")
@@ -271,9 +271,9 @@ if __name__ == '__main__':
             consulta_output = execute_yuno_core(mode=3, input_data=pregunta_negocio, current_context=memoria_viva_actualizada)
             
             if isinstance(consulta_output, dict):
-                 print("✅ MODO 3 ÉXITO. Filtro Sugerido:", consulta_output.get("visualization_filter"))
+                 print("MODO 3 EXITO. Filtro Sugerido:", consulta_output.get("visualization_filter"))
         else:
-            print(f"❌ FALLO EN CONDENSACIÓN: {memoria_viva_actualizada}")
+            print(f"FALLO EN CONDENSACION: {memoria_viva_actualizada}")
 
 ### 3. Ejecución Final
 
